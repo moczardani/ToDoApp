@@ -14,17 +14,17 @@ export default function Dashboard({user}) {
     return (
         <Box sx={{display: 'flex'}}>
             <Sidebar user={user} category={category} selectCategory={selectCategory}/>
-            <Box sx={{
-                flexGrow: 1,                
-                width: '80%',
-                maxWidth: '1200px',
-                margin: 'auto',
-                marginTop: '20px',
-                bgcolor: 'background.paper' 
-            }}>
-                <Typography variant='h3'>{category}</Typography>
-                <ToDoList user={user} category={category}/>
-                <NewToDoForm user={user} category={category}/>
+            <Box sx={{flexGrow: 1}}>
+                <Box sx={{                          
+                    width: '80%',
+                    margin: 'auto',
+                    marginTop: 5,
+                    bgcolor: 'background.paper'
+                }}>
+                    <Typography sx={{marginBottom: 4}} variant='h3'>{category}</Typography>
+                    <NewToDoForm user={user} category={category}/>
+                    <ToDoList user={user} category={category}/>
+                </Box>
             </Box>
         </Box>
     );
