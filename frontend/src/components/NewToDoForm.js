@@ -18,16 +18,19 @@ export default function NewToDoForm({user, category}) {
     };
 
     const addToDo = () => {    
-        console.log(category);    
         const json = {
             name: name,
             priority: priority,
+            done: false,
             category: category,
-            userid: user.id
+            userId: user.id
         };
 
         const options = {
             method: 'POST',      
+            headers: {
+                'Content-Type': 'application/json',
+              }, 
             body: JSON.stringify(json)
         };
 

@@ -43,6 +43,9 @@ export default function SignIn() {
 
     const options = {
       method: 'POST',      
+      headers: {
+        'Content-Type': 'application/json',
+      }, 
       body: JSON.stringify(json)
     };
 

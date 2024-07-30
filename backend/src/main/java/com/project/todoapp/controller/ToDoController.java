@@ -17,34 +17,25 @@ public class ToDoController {
     private ToDoService toDoService;
 
     @PostMapping("/addtodo")
-    public void addToDo(@RequestBody String body) {
-        JSONObject jo = new JSONObject(body);
-        String name = jo.getString("name");
-        String priority = jo.getString("priority");
-        String category = jo.getString("category");
-        Long userId = jo.getLong("userid");
-        ToDo t = new ToDo(name, priority, false, category, userId);
+    public void addToDo(@RequestBody ToDo t) {
         toDoService.addToDo(t);
     }
 
     @PostMapping("/todos")
     public List<ToDo> getToDos(@RequestBody String body) {
-        JSONObject jo = new JSONObject(body);
-        Long userId = jo.getLong("userid");
-        return toDoService.getToDos(userId);
+        JSONObject json = new JSONObject(body);
+        return toDoService.getToDos(json.getLong("userId"));
     }
 
     @PostMapping("/deletetodo")
     public void deleteTodo(@RequestBody String body) {
-        JSONObject jo = new JSONObject(body);
-        Long id = jo.getLong("id");
-        toDoService.deleteToDo(id);
+        JSONObject json = new JSONObject(body);
+        toDoService.deleteToDo(json.getLong("id"));
     }
 
     @PostMapping("/markasdone")
     public void markAsDone(@RequestBody String body) {
-        JSONObject jo = new JSONObject(body);
-        Long id = jo.getLong("id");
-        toDoService.markAsDone(id);
+        JSONObject json = new JSONObject(body);
+        toDoService.markAsDone(json.getLong("id"));
     }
 }

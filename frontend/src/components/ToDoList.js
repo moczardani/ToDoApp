@@ -18,11 +18,14 @@ export default function ToDoList({user, category}) {
   }
   React.useEffect(() => {
     const json = {
-      userid: user.id,
+      userId: user.id,
     };
 
     const options = {
       method: 'POST',      
+      headers: {
+        'Content-Type': 'application/json',
+      }, 
       body: JSON.stringify(json)
     };
 
@@ -42,13 +45,17 @@ export default function ToDoList({user, category}) {
     setDialogOpen(false);
   };
 
-  const handleDelete = (key) => {
+  const handleDelete = (id) => {
+    console.log(id);
     const json = {
-      id: key,
+      id: id,
     };
 
     const options = {
-      method: 'POST',      
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+      }, 
       body: JSON.stringify(json)
     };
 
@@ -57,13 +64,16 @@ export default function ToDoList({user, category}) {
     setDialogOpen(false);
   }
 
-  const handleMarkAsDone = (key) => {
+  const handleMarkAsDone = (id) => {
     const json = {
-      id: key,
+      id: id,
     };
 
     const options = {
       method: 'POST',      
+      headers: {
+        'Content-Type': 'application/json',
+      }, 
       body: JSON.stringify(json)
     };
 
@@ -100,7 +110,7 @@ export default function ToDoList({user, category}) {
               textDecoration: todo.done ? 'line-through' : 'none',
               color: todo.done ? 'grey' : 'black'
               }}/>
-            <DeleteDialog todo={todo.name} open={dialogOpen} handleCloseDialog={handleCloseDialog} handleDelete={() => handleDelete(todo.id)}></DeleteDialog>
+          <DeleteDialog todo={todo.name} open={dialogOpen} handleCloseDialog={handleCloseDialog} handleDelete={() => handleDelete(todo.id)}></DeleteDialog>
         </ListItem>
       ))}
     </List>

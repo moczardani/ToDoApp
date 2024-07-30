@@ -45,7 +45,10 @@ export default function SignUp() {
     };
 
     const options = {
-      method: 'POST',      
+      method: 'POST',     
+      headers: {
+        'Content-Type': 'application/json',
+      }, 
       body: JSON.stringify(json)
     };
 

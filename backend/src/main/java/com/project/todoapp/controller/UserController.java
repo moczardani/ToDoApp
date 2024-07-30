@@ -16,14 +16,7 @@ public class UserController {
     private User loggedInUser;
 
     @PostMapping("/signup")
-    public boolean addUser(@RequestBody String body) {
-        JSONObject jo = new JSONObject(body);
-        String firstName = jo.getString("firstName");
-        String lastName = jo.getString("lastName");
-        String email = jo.getString("email");
-        String password = jo.getString("password");
-        Boolean promotions = jo.getBoolean("promotions");
-        User u = new User(firstName, lastName, email, password, promotions);
+    public boolean addUser(@RequestBody User u) {
         return userService.addUser(u);
     }
 
