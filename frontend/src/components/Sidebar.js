@@ -17,6 +17,8 @@ import WorkIcon from '@mui/icons-material/Work';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import CategoryIcon from '@mui/icons-material/Category';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import { Avatar, Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
@@ -74,7 +76,7 @@ function getIcon(text) {
   }
 }
 
-export default function Sidebar({user, category, selectCategory}) {
+export default function Sidebar({user, category, selectCategory, toggleColorMode, darkMode}) {
     const navigate = useNavigate();
 
     const logoutHandle = () => {    
@@ -92,7 +94,7 @@ export default function Sidebar({user, category, selectCategory}) {
         sx={{
           width: drawerWidth,                 
           '& .MuiDrawer-paper': {
-            bgcolor: 'lightgrey',
+            //bgcolor: 'lightgrey',
             width: drawerWidth,
             boxSizing: 'border-box',
           },
@@ -139,14 +141,18 @@ export default function Sidebar({user, category, selectCategory}) {
           ))}
         </List>
         <Divider />    
-        <Button sx={{
-            marginTop: 'auto'
-        }}
-            onClick={logoutHandle}
-        >
-            Sign Out     
-            <ExitToAppIcon sx={{marginLeft: '5px'}}/>
-        </Button>    
+        <Box sx={{
+          marginTop: 'auto',          
+        }}>
+          <Button sx={{width: '50%'}} onClick={toggleColorMode}>
+            {darkMode ? "Light Mode" : "Dark Mode"}
+            {darkMode ? <LightModeIcon sx={{marginLeft: '5px'}}/> : <DarkModeIcon sx={{marginLeft: '5px'}} />}
+          </Button>
+          <Button sx={{width: '50%'}} onClick={logoutHandle}>
+              Sign Out     
+              <ExitToAppIcon sx={{marginLeft: '5px'}}/>
+          </Button>
+        </Box>
       </Drawer>
     </Box>
   );
