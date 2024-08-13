@@ -120,7 +120,7 @@ export default function ToDoList({user, category}) {
             primary={todo.name}
             sx={{
               textDecoration: todo.done ? 'line-through' : 'none',
-              color: todo.done ? 'grey' : 'black'
+              color: todo.done && 'grey' 
               }}/>
           <DeleteDialog todo={todo.name} open={todo.id === dialogOpen.id && dialogOpen.state} handleCloseDialog={() => handleCloseDialog(todo.id)} handleDelete={() => handleDelete(todo.id)}></DeleteDialog>
         </ListItem>

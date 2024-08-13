@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -31,6 +32,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const [checked, setChecked] = React.useState(false);
 
   const handleSubmit = (event) => {
@@ -53,8 +55,17 @@ export default function SignUp() {
     };
 
     fetch('http://localhost:8080/signup', options)
-      .then(data => console.log(data))
+      .then(response => response.json())
+      .then(response => {
+        if(response === true) {
+          alert('Successful registration!');
+          navigate('/signin');
+        } else {
+          alert('Registration failed, this email already exists!');
+        }
+      })
       .catch(error => console.error(error));
+    
   };
 
   return (
